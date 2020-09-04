@@ -56,7 +56,6 @@ public class AppConfig {
             e.printStackTrace();
         }
         return dataSource;
-
     }
 
 }
