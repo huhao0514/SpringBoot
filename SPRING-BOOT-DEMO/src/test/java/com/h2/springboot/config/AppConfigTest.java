@@ -2,6 +2,8 @@ package com.h2.springboot.config;
 
 import com.alibaba.fastjson.JSONObject;
 import com.h2.springboot.DemoApplication;
+import com.h2.springboot.condition.MyConditional;
+import com.h2.springboot.pojo.MyCondition;
 import com.h2.springboot.pojo.User;
 import com.h2.springboot.pojo.Worker;
 import lombok.extern.slf4j.Slf4j;
@@ -46,5 +48,12 @@ public class AppConfigTest {
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
         DataSource dataSource = (DataSource) context.getBean("dataSource");
         log.info(dataSource.toString());
+    }
+
+    @Test
+    public void testCondition() {
+
+        ApplicationContext context = new AnnotationConfigApplicationContext(ConditionConfig.class);
+        MyCondition condition = (MyCondition) context.getBean("myCondition");
     }
 }
