@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 /**
  * Created by: huhao
  * Date: 2020/9/4
+ * 1:ConfigurationProperties中prefix属性值是唯一的,不能重复.
+ *
  */
 @Component(value = "dataBaseProperties")
 @ConfigurationProperties("spring.datasource") //需要引入属性文件依赖,根据prefix+属性名,自动拼接为属性文件key全称
