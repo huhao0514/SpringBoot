@@ -21,7 +21,7 @@ class SpringAopApplicationTests {
         HelloService helloService = new HelloServiceImpl();
         Interceptor interceptor = new MyInterceptor();
         HelloService proxy = (HelloService) ProxyBean.getProxyBean(helloService, interceptor);
-        proxy.sayHello("jack");
+        proxy.sayHello("jack"); //会调用InvocationHandler的invoke方法
        /* 返回结果
         before...
         around before...
