@@ -2,9 +2,13 @@ package com.h2.springboot.springaop.aspect;
 
 import com.h2.springboot.springaop.aspect.validator.IUserValidator;
 import com.h2.springboot.springaop.aspect.validator.impl.UserValidatorImpl;
+import com.h2.springboot.springaop.pojo.User;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
+
+import java.util.Arrays;
 
 /**
  * Created by: huhao
@@ -41,6 +45,20 @@ public class UserAspect {
     @Pointcut(value = "execution(* com.h2.springboot.springaop.aspect.service.impl.UserServiceImpl.printUser(..))")
     public void pointcut(){ }
 
+    /**
+     * 通知获取参数
+     * @param joinPoint
+     * @param user
+     * 正则式:pointcut() && args(user),pointcut()表示启用原来定义切点的规则,
+     * 并且约定将连接点(目标对象方法)名称user的参数传递进来.
+     * JoinPoint类型的参数对于非环绕型通知而言,环绕型通知用ProceedingJoinPoint
+     *
+     */
+    @Before("pointcut() && args(user)")
+    public void beforeParam(JoinPoint joinPoint, User user){
+        Object[] args = joinPoint.getArgs();
+        Arrays.asList(args).stream().forEach(System.out::println);
+    }
 
     @Before("pointcut()")
     public void before(){
