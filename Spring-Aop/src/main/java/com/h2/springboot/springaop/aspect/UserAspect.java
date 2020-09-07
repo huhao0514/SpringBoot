@@ -1,5 +1,6 @@
 package com.h2.springboot.springaop.aspect;
 
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
@@ -36,6 +37,20 @@ public class UserAspect {
     @After("pointcut()")
     public void after(){
         System.out.println("after...");
+    }
+
+    /**
+     * 环绕通知是一个取代原有目标对象方法的通知,也提供了回调原有目标对象方法的能力.
+     * @param joinPoint
+     * @throws Throwable
+     */
+    @Around("pointcut()")
+    public void around(ProceedingJoinPoint joinPoint) throws Throwable {
+        System.out.println("arouond before...");
+        joinPoint.proceed(); //回调目标对象的原有方法
+        System.out.println("around after...");
+
+
     }
 
     @AfterReturning("pointcut()")
