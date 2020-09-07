@@ -1,5 +1,7 @@
 package com.h2.springboot.springaop.aspect;
 
+import com.h2.springboot.springaop.aspect.validator.IUserValidator;
+import com.h2.springboot.springaop.aspect.validator.impl.UserValidatorImpl;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
@@ -14,6 +16,17 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class UserAspect {
+
+
+    /**
+     *  引入新的用户校验接口
+     *   @DeclareParents 引入新的类来增强服务
+     *   属性:value 指向你要增强功能的目标对象
+     *        defaultImpl 引入增强功能的类
+     */
+    @DeclareParents(value = "com.h2.springboot.springaop.aspect.service.impl.UserServiceImpl+"
+            ,defaultImpl = UserValidatorImpl.class)
+    public IUserValidator userValidator;
 
     /**
      * 使用@Pointcut来定义切点,标注在方法pointcut上

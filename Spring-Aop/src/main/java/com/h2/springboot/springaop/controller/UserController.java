@@ -1,6 +1,7 @@
 package com.h2.springboot.springaop.controller;
 
 import com.h2.springboot.springaop.aspect.service.IUserService;
+import com.h2.springboot.springaop.aspect.validator.IUserValidator;
 import com.h2.springboot.springaop.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,11 +19,18 @@ public class UserController {
     private IUserService userService;
 
     @GetMapping(value = "print")
-    public User printUser(@RequestParam String id,@RequestParam String name){
-           User user=new User()
-                   .setId(id)
-                   .setName(name);
-        userService.printUser(user);
+    public User printUser(@RequestParam String id, @RequestParam String name) {
+        User user = new User()
+                .setId(id)
+                .setName(name);
+        //验证user为null情况.
+        //User user=null;
+        //强制转换
+        IUserValidator userValidator = (IUserValidator) userService;
+        //验证用户是否为空
+        if (userValidator.validate(user)) {
+            userService.printUser(user);
+        }
         return user;
     }
 }
