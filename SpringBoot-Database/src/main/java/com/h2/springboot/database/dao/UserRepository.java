@@ -26,6 +26,7 @@ public interface UserRepository extends JpaRepository<User,Long> {
      */
     public List<User> findByUserNameLike(String userName);
 
-
-
+   @Query(value = "from user order"
+   ,countQuery = "select count(id) from user ")
+    public Page<User> findAllUser(Pageable pageable);
 }

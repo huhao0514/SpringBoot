@@ -63,4 +63,13 @@ public class UserController {
         Page<User> all = userRepository.findAll(pageable);
         return new PageResult<>(all);
     }
+
+    @GetMapping("getUser2")
+    public PageResult<User> getUser2(@RequestParam(name="pageNo") int pageNo,
+                                    @RequestParam(name="pageSize") int pageSize){
+        //起始页为0
+        Pageable pageable = PageRequest.of(pageNo, pageSize);
+        Page<User> all = userRepository.findAllUser(pageable);
+        return new PageResult<>(all);
+    }
 }
