@@ -4,11 +4,9 @@ import com.h2.springboot.database.dao.UserRepository;
 import com.h2.springboot.database.entity.User;
 import com.h2.springboot.page.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.QueryByExampleExecutor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -70,6 +68,6 @@ public class UserController {
         //起始页为0
         Pageable pageable = PageRequest.of(pageNo, pageSize);
         Page<User> all = userRepository.findAllUser(pageable);
-        return new PageResult<>(all);
+        return new PageResult<User>(all);
     }
 }
