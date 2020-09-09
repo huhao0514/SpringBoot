@@ -1,4 +1,4 @@
-package com.h2.springboot.database;
+package com.h2.springboot.database.controller;
 
 import com.h2.springboot.database.dao.UserRepository;
 import com.h2.springboot.database.entity.User;
