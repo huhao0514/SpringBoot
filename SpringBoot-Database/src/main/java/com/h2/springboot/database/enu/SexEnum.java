@@ -9,7 +9,7 @@ import lombok.Data;
 public enum  SexEnum {
     MALE(1,"男"),
 
-    FEMALE(0,"女");
+        FEMALE(0,"女");
 
     private int id;
     private String name;
