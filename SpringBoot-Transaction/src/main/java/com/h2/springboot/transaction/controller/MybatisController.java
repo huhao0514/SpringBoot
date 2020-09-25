@@ -30,8 +30,10 @@ public class MybatisController {
         List<TUser> list=new ArrayList<>();
         TUser user1=new TUser();
         user1.setId(id1);
+        user1.setUserName(id1+"");
         TUser user2=new TUser();
-        user1.setId(id2);
+        user2.setId(id2);
+        user2.setUserName(id2+"");
         list.add(user1);
         list.add(user2);
         int i = userBatchService.inserUser(list);

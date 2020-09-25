@@ -21,7 +21,7 @@ public class TUserServiceImpl implements TUserService {
     }
 
 
-    @Transactional(isolation = Isolation.READ_COMMITTED,propagation = Propagation.NESTED)
+    @Transactional(isolation = Isolation.READ_COMMITTED,propagation = Propagation.REQUIRES_NEW)
     @Override
     public int insertUser(TUser tUser) {
         return tUserMapper.insertUser(tUser);

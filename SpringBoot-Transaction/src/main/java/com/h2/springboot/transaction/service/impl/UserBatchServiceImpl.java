@@ -27,7 +27,7 @@ public class UserBatchServiceImpl implements IUserBatchService {
      * @param tUsers
      * @return
      * 1:UserBatchServiceImpl调用tUserService方法,若子方法没设置事务传播策略,则沿用当前事务策略.发生异常都回滚
-     * 2:设置子方法的传播策略为NESTED,
+     *
      */
     @Transactional(isolation = Isolation.READ_COMMITTED,propagation = Propagation.REQUIRED)
     @Override
